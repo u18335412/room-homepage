@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
 import arrowImage from "../images/icon-arrow.svg";
 import hero1 from "../images/desktop-image-hero-1.jpg";
 import hero2 from "../images/desktop-image-hero-2.jpg";
