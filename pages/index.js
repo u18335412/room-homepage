@@ -5,18 +5,53 @@ import hero1 from "../images/desktop-image-hero-1.jpg";
 import hero2 from "../images/desktop-image-hero-2.jpg";
 import hero3 from "../images/desktop-image-hero-3.jpg";
 
+import crossButton from "../images/icon-close.svg";
 import hamburgerButton from "../images/icon-hamburger.svg";
 import rightChevron from "../images/icon-angle-right.svg";
 import leftChevron from "../images/icon-angle-left.svg";
 import col1Image from "../images/image-about-dark.jpg";
 import col3Image from "../images/image-about-light.jpg";
 import { useState } from "react";
-import { useEffect } from "react";
+
+
+function CustomeLink({ children }) {
+  return (
+    <Link href="#">
+      <div className=" group flex flex-col items-center relative cursor-pointer">
+        {children}
+        <span className=" bg-white h-[0.1rem] w-1/2 absolute -bottom-3 opacity-0 group-hover:opacity-100 transition-opacity">
+          {" "}
+        </span>
+      </div>
+    </Link>
+  );
+}
 
 const Navbar = (props) => {
+  const [showMenu, setShowMenu] = useState("");
+
+  const toggleMenu = () => {
+    showMenu === "" ? setShowMenu("hidden") : setShowMenu("");
+  };
+
   return (
     <>
-      <header className=" flex flex-col lg:flex-row relative">
+      <div
+        className={`gap-x-10 py-10 px-5 ${showMenu}  md:hidden`}
+      >
+        <div className=" flex space-x-5 items-center font-bold text-sm ">
+          <img
+            onClick={toggleMenu}
+            src={crossButton.src}
+            className=" w-4 h-4 mr-10"
+          ></img>
+          <CustomeLink name="home">home</CustomeLink>
+          <CustomeLink name="shop">shop</CustomeLink>
+          <CustomeLink name="about">about</CustomeLink>
+          <CustomeLink name="contact">contact</CustomeLink>
+        </div>
+      </div>
+      <header className=" flex flex-col lg:flex-row relative transition-all">
         <div className=" w-full lg:w-3/5 relative bg-red-400">
           <div className=" md:invisible flex w-32  h-14 bottom-0 right-0 absolute cursor-pointer">
             <div
@@ -72,17 +107,20 @@ const Navbar = (props) => {
         </div>
       </header>
       <div className="absolute top-0 md:pl-20 md:left-0 md:pt-5 text-white ">
-        <span className=" md:invisible absolute md:relative pt-5 px-6">
-          <img src={hamburgerButton.src}></img>
-        </span>
-        <span className=" md:relative md:-left-11 absolute text-center w-screen mt-4">
+        <span className=" mt-4 md:relative md:-left-11 md:top-9 absolute text-center w-screen">
           <Link href="/">room</Link>
         </span>
-        <span className=" pl-14 space-x-5 invisible md:visible">
-          <Link href="#">home</Link>
-          <Link href="#">shop</Link>
-          <Link href="#">about</Link>
-          <Link href="#">contact</Link>
+        <div
+          onClick={toggleMenu}
+          className=" md:invisible absolute md:relative px-6 top-5"
+        >
+          <img src={hamburgerButton.src}></img>
+        </div>
+        <span className=" pl-20 space-x-5 flex invisible md:visible">
+          <CustomeLink name="home">home</CustomeLink>
+          <CustomeLink name="shop">shop</CustomeLink>
+          <CustomeLink name="about">about</CustomeLink>
+          <CustomeLink name="contact">contact</CustomeLink>
         </span>
       </div>
     </>
