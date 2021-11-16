@@ -28,7 +28,7 @@ function CustomeLink({ children }) {
 }
 
 const Navbar = (props) => {
-  const [showMenu, setShowMenu] = useState("");
+  const [showMenu, setShowMenu] = useState("hidden");
 
   const toggleMenu = () => {
     showMenu === "" ? setShowMenu("hidden") : setShowMenu("");
@@ -43,7 +43,7 @@ const Navbar = (props) => {
           <img
             onClick={toggleMenu}
             src={crossButton.src}
-            className=" w-4 h-4 mr-10"
+            className=" w-4 h-4 mr-10 transition-all"
           ></img>
           <CustomeLink name="home">home</CustomeLink>
           <CustomeLink name="shop">shop</CustomeLink>
